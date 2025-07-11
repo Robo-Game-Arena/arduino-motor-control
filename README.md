@@ -1,17 +1,35 @@
 
 # Arduino Motor Control
 
-This repository contains three Arduino sketches, designed to work with a differential drive mobile robot. The robots have an ESP32 Feather microcontroller, 2 MG90S Micro Servos (continuous), and a battery:
+This repository contains four Arduino sketches, designed to work with a differential drive mobile robot. The robots have an ESP32 Feather microcontroller, 2 MG90S Micro Servos (continuous), and a battery:
 
-- **motor_controller.ino**
 - **get_MAC_address.ino**
 - **servo_characterization.ino**
+- **servo_characterization_with_controller.ino**
+- **motor_controller.ino**
 
 ## File Descriptions
 
+### get_MAC_address.ino
+
+Reads the MAC address of the ESP32 Feather and prints it to the serial monitor.
+
+**Usage:** Copy MAC address to main.py in the __ repository
+
+### servo_characterization.ino
+
+Sweeps from 0-100% PWM in 25% intervals for user to measure corresponding servo angular velocities.
+
+**Usage:** Produce PWM-velocity mapping for usage in /servo_normalization.xlsx
+
 ### motor_controller.ino
 
-Processes velocity commands recieved via BLE, converting them into PWM signals for diff
+Processes velocity commands recieved via BLE, converting them into PWM signals for the servos.
+
+**Configuration:**
+- WHEELBASE: distance between wheels in millimeters
+- WHEEL_RADIUS: radius of wheels in millimeters  
+- WHEEL_VEL_MAX: max velocity of wheels in millimeters/second (choose lower max)  
 
 **Features:**
 
@@ -23,22 +41,6 @@ Processes velocity commands recieved via BLE, converting them into PWM signals f
 
 - `DIR_PIN` (e.g. D4): motor direction  
 - `PWM_PIN` (e.g. D5): speed control
-
-### get_MAC_address.ino
-
-Reads the MAC address of an ESP32 Feather and prints it to the serial monitor.
-
-### servo_characterization.ino
-
-Sweeps a servo from 0° to 180° and logs pulse widths for characterization.
-
-**Features:**
-
-- Uses `Servo.h` library  
-- Serial output of angle and microsecond pulse  
-- Helpful for mapping angles to PWM signals
-
-**Use case:** Servo calibration and mechanical limit testing.
 
 ## How to Use
 
