@@ -1,11 +1,10 @@
 
 # Arduino Motor Control
 
-This repository contains four Arduino sketches, designed to work with a differential drive mobile robot. The robots have an ESP32 Feather microcontroller, 2 MG90S Micro Servos (continuous), and a battery:
+This repository contains three Arduino sketches, designed to work with a differential drive mobile robot. The robots have an ESP32 Feather microcontroller, 2 MG90S Micro Servos (continuous), and a battery:
 
 - **get_MAC_address.ino**
 - **servo_characterization.ino**
-- **servo_characterization_with_controller.ino**
 - **motor_controller.ino**
 
 ## File Descriptions
