@@ -12,39 +12,39 @@ When starting from scratch, these files should be used in order.
 
 ## File Descriptions
 
-### get_MAC_address.ino
+### <ins> get_MAC_address.ino </ins>
 
-Reads the MAC address of the ESP32 Feather and prints it to the serial monitor.
+  Reads the MAC address of the ESP32 Feather and prints it to the serial monitor.
 
-**Usage:** Copy MAC address to main.py in the __ repository
+  **Usage:** Copy MAC address to main.py in the __ repository
 
-### servo_characterization.ino
+### <ins> servo_characterization.ino </ins>
 
-Sweeps from 0-100% PWM in 25% intervals to produce PWM-velocity mapping.
+  Sweeps from 0-100% PWM in 25% intervals to produce PWM-velocity mapping.
 
-**Usage:**  Measure corresponding servo angular velocities and copy into servo_normalization.xlsx
+  **Usage:**  Measure corresponding servo angular velocities and copy into servo_normalization.xlsx
 
-### servo_normalization.xlsx
+### <ins> servo_normalization.xlsx </ins>
 
-Given non-linear PWM-velocity mapping, linearizes velocity curve and produces corresponding PWM values.
+  Given non-linear PWM-velocity mapping, linearizes velocity curve and produces corresponding PWM values.
 
-**Usage:** After updating angular velocity values, copy output into motor_controller.ino
+  **Usage:** After updating angular velocity values, copy output into motor_controller.ino
 
-### motor_controller.ino
+### <ins> motor_controller.ino </ins>
 
-Processes velocity commands recieved via BLE, converting them into PWM signals for the servos.
+  Processes velocity commands recieved via BLE, converting them into PWM signals for the servos.
 
-**Configuration:**
-- WHEELBASE: distance between wheels in millimeters
-- WHEEL_RADIUS: radius of wheels in millimeters  
-- WHEEL_VEL_MAX: max velocity of wheels in millimeters/second (choose lower max)
-- SCALE_L[5], SCALE_R[5]: PWM-velocity mapping from servo_normalization.xlsx
-- SERVICE_UUID: service UUID for the ESP32, can be found with nRF Connect app
-- CHARACTERISTIC_UUID: characteristic UUID for the ESP32, can be found with nRF Connect app
+  **Configuration:**
+  - WHEELBASE: distance between wheels in millimeters
+  - WHEEL_RADIUS: radius of wheels in millimeters  
+  - WHEEL_VEL_MAX: max velocity of wheels in millimeters/second (choose lower max)
+  - SCALE_L[5], SCALE_R[5]: PWM-velocity mapping from servo_normalization.xlsx
+  - SERVICE_UUID: service UUID for the ESP32, can be found with nRF Connect app
+  - CHARACTERISTIC_UUID: characteristic UUID for the ESP32, can be found with nRF Connect app
 
-**Usage:**
-- Receives linear and angular velocity values via BLE
-- Controls servos given adjusted PWM-velocity mapping to achieve given linear and angular velocity
+  **Usage:**
+  - Receives linear and angular velocity values via BLE
+  - Controls servos given adjusted PWM-velocity mapping to achieve given linear and angular velocity
 
 ## Requirements
 
