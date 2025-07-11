@@ -16,7 +16,7 @@ When starting from scratch, these files should be used in order.
 
   Reads the MAC address of the ESP32 Feather and prints it to the serial monitor.
 
-  **Usage:** Copy MAC address to main.py in the __ repository
+  **Usage:** Copy MAC address to main.py in the EaterMover-AprilTag respository
 
 ### <ins> servo_characterization.ino </ins>
 
