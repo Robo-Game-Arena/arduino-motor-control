@@ -57,14 +57,8 @@ struct PWM {
 
 struct PWM velocitiesToPWM(int v, int w) {
   float new_w = w / 180.0 * PI;
-  //Serial.println("v");
-  //Serial.println(v);
-  //Serial.println("w");
-  //Serial.println(new_w);
   float W_left  = (2*v - WHEELBASE * new_w) / (2 * WHEEL_RADIUS);
   float W_right = (2*v + WHEELBASE * new_w) / (2 * WHEEL_RADIUS);
-  //Serial.println(W_left);
-  //Serial.println(W_right);
 
   if (abs(W_left) > WHEEL_OMEGA_MAX) {
     Serial.println("left wheel max exceeded");
@@ -89,29 +83,15 @@ struct PWM velocitiesToPWM(int v, int w) {
 
 int adjustOffset(int raw, bool isLeft) {
   float percent_offset = float(map(raw, -WHEEL_OMEGA_MAX, WHEEL_OMEGA_MAX, -1000, 1000)) / 1000;
-  //if (isLeft){
-  //  Serial.println("left");
-  //} else {
-  //  Serial.println("right");
-  //}
-  //Serial.println(percent_offset);
   float scale = 0;
   for (int i = 0; i < 4; i++) {
     if ((OFFSETS[i] <= abs(percent_offset)) & (abs(percent_offset) <= OFFSETS[i+1])) { 
       float x = (abs(percent_offset) - OFFSETS[i]) / 0.25; 
       if (isLeft) {
         scale = SCALE_L[i] + x * (SCALE_L[i+1] - SCALE_L[i]);
-        //Serial.println("left");
-        //Serial.println(SCALE_L[i+1]);
-        //Serial.println(x);
-        //Serial.println(SCALE_L[i]);
       }
       else {
         scale = SCALE_R[i] + x * (SCALE_R[i+1] - SCALE_R[i]);
-        //Serial.println("right");
-        //Serial.println(SCALE_R[i+1]);
-        //Serial.println(x);
-        //Serial.println(SCALE_R[i]);
       }
     }
   }
